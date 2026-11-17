@@ -205,6 +205,75 @@ static void menu_label(int tile, int width, unsigned crc_en, const char *text, i
     }
 }
 
+/* ---- Pantalla de estado de la misión: cabecera (dos sprites de 64x32) y botones REPOSO/GUARDAR (32x32 + 16x32, 48x19 útiles) ---- */
+
+#define PW 128
+/* Lienzo de dos sprites contiguos en 1D (A de wa píxeles y B de wb, h de alto) leído de la VRAM de objetos y vuelto a escribir. */
+static int pair_idx(int tileA, int wa, int tileB, int wb, int x, int y, int *off, int *odd) {
+    int inA = x < wa, w = inA ? wa : wb, t = inA ? tileA : tileB, xx = inA ? x : x - wa;
+    *off = (t + (y / 8) * (w / 8) + xx / 8) * 32 + (y % 8) * 4 + (xx % 8) / 2; *odd = xx & 1;
+    return 0;
+}
+static int pair_get(int tileA, int wa, int tileB, int wb, int x, int y) {
+    int off, odd; pair_idx(tileA, wa, tileB, wb, x, y, &off, &odd);
+    unsigned char b = rt_vram[0x10000 + off]; return odd ? b >> 4 : b & 15;
+}
+static void pair_set(int tileA, int wa, int tileB, int wb, int x, int y, int v) {
+    int off, odd; pair_idx(tileA, wa, tileB, wb, x, y, &off, &odd);
+    unsigned char *b = &rt_vram[0x10000 + off]; *b = odd ? (unsigned char)((*b & 15) | v << 4) : (unsigned char)((*b & 0xF0) | v);
+}
+static int obj_seen(int tile, unsigned shape, unsigned size) {
+    for (int i = 0; i < 128; i++) {
+        const unsigned char *o = rt_oam + i * 8;
+        unsigned a0 = o[0] | o[1] << 8, a1 = o[2] | o[3] << 8, a2 = o[4] | o[5] << 8;
+        if ((a0 & 0x0300) == 0 && (a0 >> 14) == shape && (a1 >> 14) == size && (int)(a2 & 0x3FF) == tile) return 1;
+    }
+    return 0;
+}
+
+/* Texto de font5 en un lienzo de índices: cada fila origen se repite hasta rows filas; bold ensancha el trazo a 2 columnas. */
+static void paint5(unsigned char *cv, int stride, int h, int x0, int y0, const char *text, int pitch, int bold, int rows, int ink) {
+    for (int i = 0; text[i]; i++) {
+        const char *g = font5(text[i]);
+        if (!g) continue;
+        for (int y = 0; y < rows; y++) for (int c = 0; c < 5; c++) {
+            if (g[(y * 7 / rows) * 6 + c] != '1') continue;
+            for (int d = 0; d <= bold; d++) {
+                int x = x0 + i * pitch + c + d, yy = y0 + y;
+                if (x >= 0 && x < stride && yy >= 0 && yy < h) cv[yy * stride + x] = (unsigned char)ink;
+            }
+        }
+    }
+}
+
+/* Botón de 48 píxeles: se conserva el marco (columnas 0-1 y 46-47, filas 0-3 y 16-18), se borra el interior y se escribe el texto. */
+static void status_button(int tileA, int tileB, unsigned crc_en, const char *text, int pitch, int bold) {
+    if (!obj_seen(tileA, 0, 2) || crc32_of(rt_vram + 0x10000 + tileA * 32, 16 * 32) != crc_en) return;
+    int n = (int)strlen(text), width = (n - 1) * pitch + 5 + bold;
+    static unsigned char cv[32 * 48];
+    memset(cv, 0, sizeof cv);
+    for (int y = 3; y <= 16; y++) for (int x = 2; x <= 45; x++) cv[y * 48 + x] = 14; /* el fondo es el índice 14 (e) */
+    paint5(cv, 48, 32, (48 - width) / 2, 4, text, pitch, bold, 12, 3);
+    for (int y = 3; y <= 16; y++) for (int x = 2; x <= 45; x++) pair_set(tileA, 32, tileB, 16, x, y, cv[y * 48 + x]);
+}
+
+/* Cabecera "QUEST STATUS": se borra la zona del texto con el color de la columna 8 de cada fila y se escribe con relleno 9 y contorno 6. */
+static void status_title(unsigned crc_en, const char *text) {
+    if (!obj_seen(64, 1, 3) || crc32_of(rt_vram + 0x10000 + 64 * 32, 32 * 32) != crc_en) return;
+    static unsigned char cv[32 * PW], ink[32 * PW];
+    memset(ink, 0, sizeof ink);
+    int n = (int)strlen(text), x0 = 12 + (90 - ((n - 1) * 9 + 7)) / 2;
+    paint5(ink, PW, 32, x0, 6, text, 9, 2, 14, 1);
+    for (int y = 0; y < 32; y++) for (int x = 0; x < PW; x++) cv[y * PW + x] = (unsigned char)pair_get(64, 64, 96, 64, x, y);
+    for (int y = 5; y <= 21; y++) for (int x = 12; x <= 101; x++) cv[y * PW + x] = cv[y * PW + 8];
+    for (int y = 5; y <= 21; y++) for (int x = 12; x <= 101; x++) {
+        if (ink[y * PW + x]) { cv[y * PW + x] = 9; continue; }
+        for (int dy = -1; dy <= 1; dy++) for (int dx = -1; dx <= 1; dx++)
+            if (ink[(y + dy) * PW + x + dx]) cv[y * PW + x] = 6;
+    }
+    for (int y = 0; y < 32; y++) for (int x = 0; x < PW; x++) pair_set(64, 64, 96, 64, x, y, cv[y * PW + x]);
+}
+
 void gfx_frame(void) {
     if (!gfx_es) return;
     title_press_start();
@@ -219,4 +288,8 @@ void gfx_frame(void) {
     menu_label(747, 40, 0x144EAB32u, "FIN", 1);
     menu_label(779, 40, 0xB8C70533u, "VOLVER", 0);
     menu_label(270, 48, 0x76FFA16Cu, "HABLAR", 2);
+    status_title(0xBC9F626Du, "ESTADO");
+    status_title(0x689BC7FBu, "OBJETOS");
+    status_button(736, 752, 0x97542EE3u, "REPOSO", 6, 0);
+    status_button(704, 720, 0x97BF24E2u, "GUARDAR", 6, 0);
 }

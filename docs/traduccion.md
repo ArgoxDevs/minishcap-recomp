@@ -44,8 +44,9 @@ Texto propio, escrito a mano a partir de lo que dice el juego (nunca copiado de 
 `language=es`, `gfx_frame()` (una vez por fotograma, desde `game_frame()`) los reconoce en la OAM —y, las cabeceras, por el
 CRC32 de sus teselas en inglés— y escribe encima teselas dibujadas con un alfabeto propio (nada se copia de la ROM):
 "PULSA START", "ELIGE ARCHIVO" y "TU NOMBRE". La revisión del festival añade OPCIONES, JUGAR, COPIAR, BORRAR, FIN,
-VOLVER, ELIGE DESTINO, CONFIRMAR BORRADO y HABLAR. Pendientes: otros gráficos del inventario y del mapa (por ejemplo ITEMS,
-QUEST STATUS, SAVE y SLEEP); ABC/abc se mantienen como indicadores de mayúsculas/minúsculas, y el logotipo se deja.
+VOLVER, ELIGE DESTINO, CONFIRMAR BORRADO y HABLAR. La pantalla de objetos y la de estado de la misión (2026-11-17) llevan ahora OBJETOS, ESTADO
+(cabeceras de dos sprites de 64x32, tiles 64 y 96 de objetos), REPOSO y GUARDAR (botones de 32x32 + 16x32); se comprueban por OAM
+y CRC de las teselas en inglés y el marco se conserva. Pendientes: el mapa y otros gráficos aún sin revisar; ABC/abc se mantienen como indicadores de mayúsculas/minúsculas, y el logotipo se deja.
 
 ## Revisión del 2026-11-17
 

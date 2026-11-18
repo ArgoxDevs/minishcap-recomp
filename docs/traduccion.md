@@ -46,7 +46,7 @@ CRC32 de sus teselas en inglés— y escribe encima teselas dibujadas con un alf
 "PULSA START", "ELIGE ARCHIVO" y "TU NOMBRE". La revisión del festival añade OPCIONES, JUGAR, COPIAR, BORRAR, FIN,
 VOLVER, ELIGE DESTINO, CONFIRMAR BORRADO y HABLAR. La pantalla de objetos y la de estado de la misión (2026-11-17) llevan ahora OBJETOS, ESTADO
 (cabeceras de dos sprites de 64x32, tiles 64 y 96 de objetos), REPOSO y GUARDAR (botones de 32x32 + 16x32); se comprueban por OAM
-y CRC de las teselas en inglés y el marco se conserva. Pendientes: el mapa y otros gráficos aún sin revisar; ABC/abc se mantienen como indicadores de mayúsculas/minúsculas, y el logotipo se deja.
+y CRC de las teselas en inglés y el marco se conserva. La pantalla de fin de partida muestra FIN DEL JUEGO en lugar de GAME OVER (seis sprites propios; se ocultan dos en la OAM). Pendientes: el mapa y otros gráficos aún sin revisar; ABC/abc se mantienen como indicadores de mayúsculas/minúsculas, y el logotipo se deja.
 
 ## Revisión del 2026-11-17
 

@@ -274,6 +274,71 @@ static void status_title(unsigned crc_en, const char *text) {
     for (int y = 0; y < 32; y++) for (int x = 0; x < PW; x++) pair_set(64, 64, 96, 64, x, y, cv[y * PW + x]);
 }
 
+/* ---- Pantalla de fin de partida: "GAME OVER" son ocho sprites de 32x32 (uno por letra, teselas 512.., paleta 8). Se sustituyen por
+   seis contiguos (teselas 512..607) con "FIN DEL JUEGO", y los dos últimos se ocultan. La OAM la reescribe el juego cada fotograma. ---- */
+static void game_over(void) {
+    static const int ox[8] = {32, 52, 72, 92, 121, 140, 158, 176}; /* x originales de las ocho letras */
+    static unsigned char want[6 * 16 * 32];
+    static int built;
+    unsigned char *dst = rt_vram + 0x10000 + 512 * 32;
+    int n = 0;
+    for (int i = 0; i < 128; i++) {
+        const unsigned char *o = rt_oam + i * 8;
+        unsigned a0 = o[0] | o[1] << 8, a1 = o[2] | o[3] << 8, a2 = o[4] | o[5] << 8;
+        if ((a0 & 0xC300) != 0 || (a1 >> 14) != 2 || (a2 >> 12) != 8) continue;
+        int t = a2 & 0x3FF, x = a1 & 0x1FF, k = -1;
+        for (int j = 0; j < 8; j++) if (x == ox[j]) k = j;
+        if (k < 0 || t < 512 || t > 608 || (t - 512) % 16) continue;
+        n++;
+    }
+    if (n != 8) return;
+    if (!built) {
+        static unsigned char cv[32][192], fill[32][192];
+        memset(cv, 0, sizeof cv); memset(fill, 0, sizeof fill);
+        const char *text = "FIN DEL JUEGO";
+        int w = 0, len = (int)strlen(text);
+        for (int i = 0; i < len; i++) w += text[i] == ' ' ? 8 : 13;
+        int x0 = (192 - w) / 2;
+        for (int i = 0; i < len; i++) {
+            if (text[i] == ' ') { x0 += 8; continue; }
+            const char *g = font5(text[i]);
+            if (g) for (int r = 0; r < 7; r++) for (int c = 0; c < 5; c++)
+                if (g[r * 6 + c] == '1') for (int dy = 0; dy < 3; dy++) for (int dx = 0; dx < 3; dx++) fill[5 + r * 3 + dy][x0 + c * 2 + dx] = 1;
+            x0 += 13;
+        }
+        for (int y = 0; y < 32; y++) for (int x = 0; x < 192; x++) {
+            if (fill[y][x]) {
+                int edge = !(y > 0 && fill[y - 1][x]) || !fill[y + 1][x] || !(x > 0 && fill[y][x - 1]) || !fill[y][x + 1];
+                cv[y][x] = (unsigned char)(edge ? 9 : y < 12 ? 11 : y < 17 ? 12 : 13);
+                continue;
+            }
+            for (int dy = -2; dy <= 2; dy++) for (int dx = -2; dx <= 2; dx++) {
+                int yy = y + dy, xx = x + dx;
+                if (yy >= 0 && yy < 32 && xx >= 0 && xx < 192 && fill[yy][xx]) cv[y][x] = 15;
+            }
+        }
+        for (int sp = 0; sp < 6; sp++) for (int y = 0; y < 32; y++) for (int x = 0; x < 32; x += 2)
+            want[sp * 512 + ((y / 8) * 4 + x / 8) * 32 + (y % 8) * 4 + (x % 8) / 2] =
+                (unsigned char)(cv[y][sp * 32 + x] | cv[y][sp * 32 + x + 1] << 4);
+        built = 1;
+    }
+    if (memcmp(dst, want, sizeof want)) {
+        if (crc32_of(dst, 16 * 32) != 0x9327DF3Cu) return; /* ni inglés ni nuestro: otra pantalla */
+        memcpy(dst, want, sizeof want);
+    }
+    for (int i = 0; i < 128; i++) {
+        unsigned char *o = rt_oam + i * 8;
+        unsigned a0 = o[0] | o[1] << 8, a1 = o[2] | o[3] << 8, a2 = o[4] | o[5] << 8;
+        if ((a0 & 0xC300) != 0 || (a1 >> 14) != 2 || (a2 >> 12) != 8) continue;
+        int t = a2 & 0x3FF, x = a1 & 0x1FF, k = -1;
+        for (int j = 0; j < 8; j++) if (x == ox[j]) k = j;
+        if (k < 0 || t < 512 || t > 608) continue;
+        if (k >= 6) { o[1] |= 0x02; continue; } /* oculto: a0 bit 9 */
+        a1 = (a1 & ~0x1FFu) | (unsigned)(24 + 32 * k);
+        o[2] = (unsigned char)a1; o[3] = (unsigned char)(a1 >> 8);
+    }
+}
+
 void gfx_frame(void) {
     if (!gfx_es) return;
     title_press_start();
@@ -288,6 +353,7 @@ void gfx_frame(void) {
     menu_label(747, 40, 0x144EAB32u, "FIN", 1);
     menu_label(779, 40, 0xB8C70533u, "VOLVER", 0);
     menu_label(270, 48, 0x76FFA16Cu, "HABLAR", 2);
+    game_over();
     status_title(0xBC9F626Du, "ESTADO");
     status_title(0x689BC7FBu, "OBJETOS");
     status_button(736, 752, 0x97542EE3u, "REPOSO", 6, 0);

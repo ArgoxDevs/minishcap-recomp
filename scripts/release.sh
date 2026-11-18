@@ -52,6 +52,29 @@ cp "$engine/LICENSE" "$stage/LICENSE-engine"
 cp README.md LICENSE "$stage/"
 [ -f README.es.md ] && cp README.es.md "$stage/"
 cp -r games "$stage/games"
+# entrada de menú de aplicaciones (opcional): ./install-menu.sh la crea apuntando a esta carpeta; sin terminal, gba-port usa los diálogos
+# de zenity/kdialog para elegir la ROM la primera vez
+cat > "$stage/install-menu.sh" <<'SH'
+#!/bin/sh
+# Crea ~/.local/share/applications/minishcap-recomp.desktop apuntando a esta carpeta. Quitarla: rm esa entrada.
+dir="$(cd "$(dirname "$0")" && pwd)"
+apps="${XDG_DATA_HOME:-$HOME/.local/share}/applications"
+mkdir -p "$apps"
+cat > "$apps/minishcap-recomp.desktop" <<EOF
+[Desktop Entry]
+Type=Application
+Name=The Minish Cap (recomp)
+Comment=Game Boy Advance desde tu propia ROM
+Exec="$dir/gba-port"
+Path=$dir
+Icon=applications-games
+Terminal=false
+Categories=Game;
+EOF
+echo "creada $apps/minishcap-recomp.desktop"
+echo "La primera vez pide la ROM con un diálogo (hace falta zenity o kdialog); gba-port --choose-rom la cambia."
+SH
+chmod +x "$stage/install-menu.sh"
 # lo lee el aviso de versión nueva (update.rs del motor): repositorio y versión instalada
 remote="$(git remote get-url origin)"
 repo="$(printf '%s' "$remote" | sed -E 's#.*github\.com[:/]([^/]+/[^/]+)$#\1#; s#\.git$##')"

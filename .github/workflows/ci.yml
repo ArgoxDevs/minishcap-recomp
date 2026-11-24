@@ -16,7 +16,7 @@ jobs:
       - name: Motor (gba-recomp, para el runtime y scan.py)
         uses: actions/checkout@v4
         with:
-          repository: AlekayDevs/gba-recomp
+          repository: ArgoxDevs/gba-recomp
           path: gba-recomp
 
       - name: Nada derivado de la ROM en git

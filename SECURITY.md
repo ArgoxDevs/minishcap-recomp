@@ -4,7 +4,7 @@
 
 Please **do not open a public issue** for a security problem. Use GitHub's private reporting instead:
 **Security → Report a vulnerability** in this repository
-(<https://github.com/AlekayDevs/minishcap-recomp/security/advisories/new>).
+(<https://github.com/ArgoxDevs/minishcap-recomp/security/advisories/new>).
 
 No abras un issue público para un problema de seguridad: usa el aviso privado de GitHub (enlace de arriba).
 
@@ -36,4 +36,4 @@ Only the latest release, once there is one.
 
 ## Out of scope / Fuera de alcance
 
-Bugs in the translator, PPU, sound or runtime belong in [`gba-recomp`](https://github.com/AlekayDevs/gba-recomp); security problems there go through that repository's private reporting.
+Bugs in the translator, PPU, sound or runtime belong in [`gba-recomp`](https://github.com/ArgoxDevs/gba-recomp); security problems there go through that repository's private reporting.

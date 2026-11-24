@@ -19,7 +19,7 @@ La ROM va en `roms/minishcap_usa.gba` (USA, SHA-1 `b4bd50e4131b027c334547b4524e2
 Hace falta el motor, en la carpeta hermana `../gba-recomp`, y Rust.
 
 ```
-git clone https://github.com/AlekayDevs/gba-recomp ../gba-recomp
+git clone https://github.com/ArgoxDevs/gba-recomp ../gba-recomp
 (cd ../gba-recomp && cargo build --release)
 ../gba-recomp/target/release/gba-port roms/minishcap_usa.gba --games games
 ../gba-recomp/target/release/gba-port roms/minishcap_usa.gba --games games --no-launch   # solo construye

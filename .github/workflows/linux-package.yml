@@ -22,7 +22,7 @@ jobs:
       # release.sh busca el motor en ../gba-recomp y TinyCC (rama mob, sin configurar) en ../tinycc
       - name: Motor y TinyCC
         run: |
-          git clone --depth 1 https://github.com/AlekayDevs/gba-recomp ../gba-recomp
+          git clone --depth 1 https://github.com/ArgoxDevs/gba-recomp ../gba-recomp
           git clone https://github.com/TinyCC/tinycc ../tinycc
           git -C ../tinycc checkout e23dabed
 

@@ -1,6 +1,6 @@
 # Contribuir
 
-Este repositorio es el juego (*The Legend of Zelda: The Minish Cap*, USA): su perfil, su C propio y los scripts de empaquetado. El traductor de ARM/Thumb a C, el runtime (bus, PPU, sonido, BIOS), el lanzador (`gba-port`) y la app de Android están en [`gba-recomp`](https://github.com/AlekayDevs/gba-recomp). Un fallo del traductor, de la PPU o del sonido va allí.
+Este repositorio es el juego (*The Legend of Zelda: The Minish Cap*, USA): su perfil, su C propio y los scripts de empaquetado. El traductor de ARM/Thumb a C, el runtime (bus, PPU, sonido, BIOS), el lanzador (`gba-port`) y la app de Android están en [`gba-recomp`](https://github.com/ArgoxDevs/gba-recomp). Un fallo del traductor, de la PPU o del sonido va allí.
 
 ## Reglas que no se negocian
 

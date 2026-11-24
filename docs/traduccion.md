@@ -122,3 +122,27 @@ El ejecutor visual admite `-SaveState 300:nombre`, `-LoadState 1:nombre` y `-Gam
 dentro de la sesión. Usa sesiones diferentes para ejecuciones simultáneas, porque compilan su propio `run.exe`.
 No reutilices estados tomados a mitad de un diálogo después de editar la traducción: los desplazamientos del banco
 pueden cambiar. Para volver a comprobar un texto, carga un estado anterior a abrir ese diálogo o arranca desde la EEPROM.
+
+### Continuación del festival (2026-11-24)
+
+Desde el estado de prueba `con-escudo`, se revisaron las páginas inmediatas de Zelda y se avanzó entre los puestos del
+festival. El texto observado cabe en sus cuadros. Al caminar hacia el norte, el runtime informó del salto indirecto
+`080627E9`; se añadió a `games/dynamic_roots.txt` y se repitió el tramo hasta el fotograma 1800 sin detenerse. El perfil
+tiene ahora 80 raíces dinámicas y la generación tradujo 7177 funciones. El estado de prueba y las capturas quedan en
+`out/translation-visual/avance-noviembre`, fuera de Git. No se llegó al castillo ni se revisaron zonas posteriores.
+
+Pasan `scripts/check.ps1` (escaneo, 22 pruebas Rust, 59 comprobaciones de BIOS, 15 de estados y construcción real) y
+`scripts/check_text.ps1` (2705 mensajes, sin avisos). Estas pruebas no verifican el sonido en un dispositivo.
+
+La continuación del mismo día llegó al camino del castillo y al primer encuentro con el mercader deku. La transición y
+la escena pidieron `080011C5`, `08066F95` y `08016AE5`; al intentar usar el escudo apareció también `03005D5C` en IWRAM.
+Se añadieron las cuatro raíces y se repitieron los tramos correspondientes sin esas interrupciones: 84 raíces en total y
+7184 funciones traducidas. Las páginas observadas de Zelda caben en pantalla. El encuentro sigue sin resolverse y no se
+ha entrado al castillo; el estado local `avance10` permite continuar. Pasan de nuevo `check.ps1` y `check_text.ps1`.
+
+Después se resolvió el encuentro devolviendo la nuez con el escudo asignado a A. El runtime pidió `03005CA4` al
+usarlo; se añadió y se repitió la acción sin interrupciones (85 raíces, 7185 funciones traducidas). Se corrigieron los
+saltos de los mensajes 16:102, 16:104 y 16:106 y se revisaron sus páginas en capturas desde antes de los diálogos.
+La partida avanzó al exterior posterior al encuentro; aún no se ha entrado al castillo. Los estados y capturas siguen en
+`out/translation-visual/avance-noviembre`. Pasan el escaneo, 22 pruebas Rust, 59 comprobaciones BIOS, 15 de estados,
+la construcción real y la comprobación de 2705 mensajes sin avisos. No se ha probado el sonido en un dispositivo.

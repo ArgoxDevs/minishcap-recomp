@@ -1173,11 +1173,11 @@
 @16:98 ¡Ten mucho cuidado!
 @16:99 Pulsa {0C}{03} mientras caminas para rodar.\nSirve\npara moverte rápido.\n¡No lo olvides! Y si\nquieres {02}{03}guardar{02}{00}\ndurante la partida, pulsa\n{02}{03}START{02}{00}\ny elige GUARDAR en la {02}{03}pantalla\nde\nobjetos{02}{00} o en la {02}{03}de estado de la\nmisión{02}{00}.
 @16:100 Hay monstruos fuera del castillo.\n\nSi\nves alguno, usa el {02}{01}escudo{02}{00}\npara\ndefenderte.\nAcércate lo bastante\npara usar la {02}{01}espada{02}{00}\nsi tienes que pelear.
-@16:102 {03}{01}{E0}¡Aaaay!\n\nDebe de ser el {02}{02}Mercader Arbusto{02}{00}\ndel que\nhablaban los soldados.\nDecían\nque un deku estaba acosando\na todos los\nque pasaban.\n¡{06}{00}, haz algo!\nSi no, no\npodremos llegar al castillo.\nSi\npudiéramos defendernos de\n{02}{03}esas nueces\nsuyas{02}{00}...
+@16:102 {03}{01}{E0}¡Aaaay!\n\nDebe de ser el {02}{02}Mercader Arbusto{02}{00}\ndel que hablaban los soldados.\nDecían que un deku estaba acosando\na todos los que pasaban.\n¡{06}{00}, haz algo! Si no, no\npodremos llegar al castillo.\nSi pudiéramos defendernos de\n{02}{03}esas nueces suyas{02}{00}...
 @16:103 Si pudiéramos defendernos de esas\n{02}{03}nueces{02}{00},\n¡seguro que haríamos algo!
-@16:104 La verdad es que me da algo de pena\nel\nMercader Arbusto. ¡Pero esa nuez\ndolió!\nBueno, ¡ya no molestará a\nnadie!\n¡Es mejor que vayamos rápido al\ncastillo!
+@16:104 La verdad es que me da algo de pena\nel Mercader Arbusto. ¡Pero esa nuez\ndolió! Bueno, ¡ya no molestará a\nnadie! ¡Es mejor que vayamos rápido\nal castillo!
 @16:105 ¿Adónde vas, {06}{00}?\n¡Date prisa y haz algo!
-@16:106 ¡Por favor! ¡Perdóneme, señor!\n\nOí que\nhabía un {02}{03}festival{02}{00} y vine a la\n{02}{02}ciudad\n{02}{00}esperando vender mi mercancía.\n¡Por\ndesgracia, los arbustos tenemos\nla\ncostumbre de escupir nueces al\nhablar!\nTodos se asustaron y salieron\ncorriendo,\n¡y nadie me compró\nnada!\n¡Este sitio es terrible para\nlos\nnegocios! ¡Me vuelvo a mi cueva!
+@16:106 ¡Por favor! ¡Perdóneme, señor!\n\nOí que había un {02}{03}festival{02}{00} y vine\na la {02}{02}ciudad{02}{00} esperando vender\nmi mercancía.\n¡Por desgracia, los arbustos tenemos\nla costumbre de escupir nueces al\nhablar! Todos se asustaron y\nsalieron corriendo, ¡y nadie me\ncompró nada!\n¡Este sitio es terrible para los\nnegocios! ¡Me vuelvo a mi cueva!
 @16:108 ¡Muy bien! ¡Al {02}{02}castillo {02}{00}vamos!
 @16:113 Aun convertida en piedra por la\n{02}{03}maldición\nde Vaati{02}{00}, sus ojos rebosan\nvida.\nDate prisa... Sálvala...
 

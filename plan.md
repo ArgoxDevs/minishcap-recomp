@@ -72,3 +72,5 @@ Las mismas mejoras de calidad de vida que en alttp-recomp, apagadas por defecto 
 - Continuación del 2026-11-24: recorrido hasta el mercader deku en el camino del castillo; añadidas cuatro raíces dinámicas (84 en total) y repetidos los tramos afectados. Falta resolver el encuentro y entrar al castillo. Pruebas generales y de texto pasan; detalle en `docs/traduccion.md`.
 
 - Encuentro con el mercader resuelto (2026-11-24): el escudo devuelve la nuez; añadida la raíz `03005CA4` (85 en total). Tres mensajes reajustados y revisados en pantalla; se avanzó por el exterior, sin entrar aún al castillo. Pruebas generales y de texto pasan; detalle en `docs/traduccion.md`.
+
+- Entrada al castillo (2026-11-24): cruzado el puente y llegado al jardín sin raíces nuevas (85). Falta entrar al edificio y revisar sus diálogos; detalle en `docs/traduccion.md`.

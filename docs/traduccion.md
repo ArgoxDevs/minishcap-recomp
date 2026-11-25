@@ -146,3 +146,10 @@ saltos de los mensajes 16:102, 16:104 y 16:106 y se revisaron sus páginas en ca
 La partida avanzó al exterior posterior al encuentro; aún no se ha entrado al castillo. Los estados y capturas siguen en
 `out/translation-visual/avance-noviembre`. Pasan el escaneo, 22 pruebas Rust, 59 comprobaciones BIOS, 15 de estados,
 la construcción real y la comprobación de 2705 mensajes sin avisos. No se ha probado el sonido en un dispositivo.
+
+### Entrada al castillo (2026-11-24)
+
+Desde el estado local `camino-norte` se caminó hacia el norte hasta cruzar el puente levadizo y llegar al jardín del
+castillo (estado local `puente-castillo`). El tramo de 1500 fotogramas no pidió raíces dinámicas nuevas (siguen 85) ni
+mostró diálogos nuevos; un guardia patrulla el jardín. Pendiente: entrar al edificio y revisar sus textos. Los estados y
+capturas quedan en `out/translation-visual/avance-noviembre`, fuera de Git.

@@ -4,9 +4,9 @@
 
 ## Estado y referencias
 
-- Revisado hasta el Festival Minish y la entrega del escudo; comprobados guardado, recarga de la EEPROM, opciones Sí/No y rebobinado. No se ha jugado hasta el final.
+- Revisado hasta la ceremonia del castillo y la cinemática de Vaati (Link despierta en el castillo); antes, el Festival Minish y la entrega del escudo; comprobados guardado, recarga de la EEPROM, opciones Sí/No y rebobinado. No se ha jugado hasta el final.
 - Traducción: 2705 mensajes en español de 3699 entradas del banco. Las restantes incluyen entradas vacías, nombres propios, depuración y habla Minish; no equivalen a diálogos pendientes.
-- Perfil operativo, con 79 raíces dinámicas. El motor ya lee el perfil y recompila el juego; no es un borrador sin soporte.
+- Perfil operativo, con 93 raíces dinámicas. El motor ya lee el perfil y recompila el juego; no es un borrador sin soporte.
 - Estado detallado y pendientes: `plan.md`. Criterios de traducción y cobertura visual: `docs/traduccion.md`. Construcción, pruebas y paquetes: `docs/DESARROLLO.md`. Formato del texto: `docs/texto.md`.
 - Estos dos archivos, `CLAUDE.md` y `AGENTS.md`, deben mantenerse idénticos. Al modificar las instrucciones, actualizar ambos.
 

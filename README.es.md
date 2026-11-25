@@ -4,7 +4,7 @@
 propia ROM** con el motor [`gba-recomp`](../gba-recomp). Este repositorio es el juego: su perfil, el aspecto de su
 lanzador y sus scripts. No contiene ninguna ROM ni nada derivado de una. [English version](README.md).
 
-**Estado: temprano.** El juego arranca, pasa la intro y las primeras zonas, guarda en la EEPROM y tiene sonido y
+**Estado: temprano.** El juego arranca, pasa la intro, el Festival Minish y la ceremonia del castillo, guarda en la EEPROM y tiene sonido y
 estados guardados; no se ha jugado hasta el final. Ver `plan.md`.
 
 ## Jugar (Windows)

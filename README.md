@@ -4,7 +4,7 @@
 [`gba-recomp`](../gba-recomp) engine. This repository is the game: its profile, its launcher look and its scripts. It
 contains no ROM and nothing derived from one. [Versión en español](README.es.md).
 
-**Status: early.** The game boots, plays through the intro and the first areas, saves to EEPROM and has sound and save
+**Status: early.** The game boots, plays through the intro, the Minish Festival and the castle ceremony, saves to EEPROM and has sound and save
 states; it has not been played to the end. See `plan.md`.
 
 ## Playing (Windows)

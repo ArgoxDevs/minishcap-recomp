@@ -80,3 +80,5 @@ Las mismas mejoras de calidad de vida que en alttp-recomp, apagadas por defecto 
 - Patio del castillo (2026-11-24): diálogo del ministro completo y escena de la Hoja Minish sin recortes, sin raíces nuevas (86). Falta la ceremonia.
 
 - Ceremonia y cinemática de Vaati (2026-11-24): revisada hasta el despertar de Link en el castillo, sin recortes; siete raíces nuevas (93 en total). Siguiente: el camino a la primera mazmorra (Bosque Deku).
+
+**Punto de reanudación (2026-11-24):** Link despierta en una habitación del castillo tras la petrificación de Zelda (estado local `ceremonia3`, 93 raíces). Siguiente: el camino al Bosque Deku y la primera mazmorra; después, pasar a pruebas por lotes (`tools/complete.sh`) y a jugar a mano. Android queda para más adelante. Pendiente técnico: integrar en `scripts/` el ciclo «ejecutar, añadir raíz, regenerar» (hoy un script temporal) y arreglar que `review_translation.ps1` termine en error de PowerShell por la salida de `run.exe` en stderr.

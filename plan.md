@@ -76,3 +76,5 @@ Las mismas mejoras de calidad de vida que en alttp-recomp, apagadas por defecto 
 - Entrada al castillo (2026-11-24): cruzado el puente y llegado al jardín sin raíces nuevas (85). Falta entrar al edificio y revisar sus diálogos; detalle en `docs/traduccion.md`.
 
 - Puerta del castillo (2026-11-24): raíz `0807F339` (86 en total); revisado el diálogo con el ministro, sin recortes. Falta entrar al edificio.
+
+- Patio del castillo (2026-11-24): diálogo del ministro completo y escena de la Hoja Minish sin recortes, sin raíces nuevas (86). Falta la ceremonia.

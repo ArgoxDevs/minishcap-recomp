@@ -160,3 +160,8 @@ Desde `puente-castillo` se avanzó hasta la escalinata. El runtime pidió `0807F
 y el tramo se repitió sin interrupciones. Se revisó en capturas el diálogo con el ministro (inicio de la ceremonia): las
 páginas caben en el cuadro y los nombres propios salen resaltados. Faltan las páginas posteriores a entrar al edificio.
 Pasan `check.ps1` y `check_text.ps1` (2705 mensajes, 0 avisos). Estado local: `castillo-dentro`.
+
+Después, pulsando A en cada página, se terminó el diálogo con el ministro y la invitación a unirse a la ceremonia; se
+cruzó la puerta hasta el patio interior, con la escena de la Hoja Minish (estado local `castillo-int`). Las páginas
+observadas caben en el cuadro y los nombres propios salen resaltados. Sin raíces nuevas (86). La escena continúa; falta
+revisar sus páginas siguientes y la ceremonia.

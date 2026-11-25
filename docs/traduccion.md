@@ -153,3 +153,10 @@ Desde el estado local `camino-norte` se caminó hacia el norte hasta cruzar el p
 castillo (estado local `puente-castillo`). El tramo de 1500 fotogramas no pidió raíces dinámicas nuevas (siguen 85) ni
 mostró diálogos nuevos; un guardia patrulla el jardín. Pendiente: entrar al edificio y revisar sus textos. Los estados y
 capturas quedan en `out/translation-visual/avance-noviembre`, fuera de Git.
+
+### Puerta del castillo (2026-11-24)
+
+Desde `puente-castillo` se avanzó hasta la escalinata. El runtime pidió `0807F339`; se añadió como raíz dinámica número 86
+y el tramo se repitió sin interrupciones. Se revisó en capturas el diálogo con el ministro (inicio de la ceremonia): las
+páginas caben en el cuadro y los nombres propios salen resaltados. Faltan las páginas posteriores a entrar al edificio.
+Pasan `check.ps1` y `check_text.ps1` (2705 mensajes, 0 avisos). Estado local: `castillo-dentro`.

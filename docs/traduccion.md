@@ -165,3 +165,11 @@ Después, pulsando A en cada página, se terminó el diálogo con el ministro y 
 cruzó la puerta hasta el patio interior, con la escena de la Hoja Minish (estado local `castillo-int`). Las páginas
 observadas caben en el cuadro y los nombres propios salen resaltados. Sin raíces nuevas (86). La escena continúa; falta
 revisar sus páginas siguientes y la ceremonia.
+
+### Ceremonia y primera cinemática de Vaati (2026-11-24)
+
+Pulsando A página a página se revisó la ceremonia: discurso del ministro, la Hoja Minish, la aparición de Vaati, la
+petrificación de Zelda y el despertar de Link en una habitación del castillo. Los textos caben en el cuadro y los
+términos propios salen resaltados. El runtime pidió `0807EBA9`, `08095421`, `08095459`, `08094B81`, `08094B6D`,
+`08064645` y `0807F0D9`; se añadieron y se repitieron los tramos hasta que no hubo más interrupciones (93 raíces).
+Pasan `check.ps1` y `check_text.ps1` (2705 mensajes, 0 avisos). Estados locales: `ceremonia` a `ceremonia3`.
